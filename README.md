@@ -3,7 +3,7 @@
 Vim plugin that allows using awesome [CtrlP](https://github.com/kien/ctrlp.vim)
 MRU plugin with even more amazing [fzf.vim](https://github.com/junegunn/fzf.vim)
 
-I love fzf fuzzy search algorithm and **CtrlP** Mru tracking - I'm using it
+I love **FZF** fuzzy search algorithm and **CtrlP** Mru tracking - I'm using it
 often to jump between two files (yes, I'm aware of `<c-^>`). The way how
 **fzf's** `:History` works was not the best solution for me that's why I
 decided to create this plugin. Currently, it requires both, **ctrlp.vim**
