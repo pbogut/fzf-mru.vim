@@ -4,8 +4,10 @@
 " Author:        Pawel Bogut <github.com/pbogut>
 " =============================================================================
 
-if exists('g:fzf_mru_loaded') | finish | endif
-let g:fzf_ctrlp_mru_loaded = 1
+if exists('g:fzf_mru_loaded')
+  finish
+endif
+let g:fzf_mru_loaded = 1
 
 function! s:fzf_mru_source()
   " remove current file from the list
