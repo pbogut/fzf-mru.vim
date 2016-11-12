@@ -31,9 +31,9 @@ function! s:fzf_mru(...) abort
         \   'source': s:fzf_mru_source(),
         \   'options': '--prompt "MRU> " ' . s:params(a:000),
         \ }
-  let extra = extend(copy(get(g:, 'fzf_layout', g:fzf#vim#default_layout)), options)
+  let extra = extend(copy(get(g:, 'fzf_layout', {'down': '~40%'})), options)
 
-  call fzf#vim#files('', extra)
+  call fzf#run(fzf#wrap('name', extra, 0))
 endfunction
 
 command! -nargs=* FZFMru call s:fzf_mru(<q-args>)
