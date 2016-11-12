@@ -8,7 +8,7 @@ MRU plugin with even more amazing [fzf.vim](https://github.com/junegunn/fzf.vim)
 I love **FZF** fuzzy search algorithm and **CtrlP** Mru tracking - I'm using it
 often to jump between two files (yes, I'm aware of `<c-^>`). The way how
 **fzf's** `:History` works was not the best solution for me that's why I
-decided to create this plugin. Currently, it requires both, **ctrlp.vim**
+decided to create this plugin. It requires **fzf**
 and **fzf.vim** to be installed.
 
 ## Instalation
@@ -16,7 +16,6 @@ and **fzf.vim** to be installed.
 Using [vim-plug](https://github.com/junegunn/vim-plug):
 
 ```vim
-Plug 'kien/ctrlp.vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
@@ -26,7 +25,6 @@ Plug 'pbogut/fzf-mru.vim'
 Using [Vundle](https://github.com/VundleVim/Vundle.vim):
 
 ```vim
-Plugin 'kien/ctrlp.vim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 
@@ -42,6 +40,10 @@ Plugin 'pbogut/fzf-mru.vim'
 - [x] Move CtrlP MRU functionality to the plugin itself
 - [ ] Add Vim help
 - [ ] Make `fzf.vim` optional dependency
+
+## Credits
+
+99% of MRU engine has been taken from [CtrlP](https://github.com/kien/ctrlp.vim).
 
 ## Contribution
 
