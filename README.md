@@ -39,7 +39,7 @@ Plugin 'pbogut/fzf-mru.vim'
 - You can also map it to a shortcut with `map <leader>p :FZFMru<cr>`.
 
 ## Todo
-- [ ] Move CtrlP MRU functionality to the plugin itself
+- [x] Move CtrlP MRU functionality to the plugin itself
 - [ ] Add Vim help
 - [ ] Make `fzf.vim` optional dependency
 

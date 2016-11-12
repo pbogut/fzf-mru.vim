@@ -9,9 +9,11 @@ if exists('g:fzf_mru_loaded')
 endif
 let g:fzf_mru_loaded = 1
 
+call fzf_mru#mrufiles#init()
+
 function! s:fzf_mru_source()
   " remove current file from the list
-  return filter(copy(ctrlp#mrufiles#list()), 'v:val != expand("%")')
+  return filter(copy(fzf_mru#mrufiles#list()), 'v:val != expand("%")')
 endfunction
 
 " prepare params
