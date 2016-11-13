@@ -16,7 +16,6 @@ fu! fzf_mru#mrufiles#opts()
         \ 'case_sensitive': ['s:cseno', 1],
         \ 'relative': ['s:re', 0],
         \ 'save_on_update': ['s:soup', 1],
-        \ 'global_list': ['s:gl', 0],
         \ }]
   for [ke, va] in items(opts)
     let [{va[0]}, {pref.ke}] = [pref.ke, exists(pref.ke) ? {pref.ke} : va[1]]
@@ -134,19 +133,11 @@ endf
 
 fu! fzf_mru#mrufiles#cachefile()
   if !exists('s:cadir') || !exists('s:cafile')
-    let s:cadir = fzf_mru#utils#cachedir().fzf_mru#utils#lash().'mru'
-    let s:cafile = s:cadir.fzf_mru#utils#lash().fzf_mru#mrufiles#cachefilename()
+    let s:cadir = fzf_mru#utils#cachedir()
+    let s:cafile = s:cadir.fzf_mru#utils#lash().'cache.txt'
   en
   retu s:cafile
 endf
-
-fu! fzf_mru#mrufiles#cachefilename()
-  if {s:gl}
-    return 'global.txt'
-  endif
-  let root = fzf_mru#utils#getroot()
-  return substitute(root, '[/\\]', '%', 'ge') . '.txt'
-endfu
 
 fu! fzf_mru#mrufiles#init()
   if !has('autocmd') | retu | en

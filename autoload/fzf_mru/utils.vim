@@ -18,14 +18,7 @@ fu! fzf_mru#utils#opts()
   let s:lash = fzf_mru#utils#lash()
   let usrhome = $HOME . s:lash( $HOME )
   let cahome = exists('$XDG_CACHE_HOME') ? $XDG_CACHE_HOME : usrhome.'.cache'
-  let cadir = isdirectory(usrhome.'.fzf_mru_cache')
-        \ ? usrhome.'.fzf_mru_cache' : cahome.s:lash(cahome).'fzf_mru'
-  if exists('g:fzf_mru_cache_dir')
-    let cadir = expand(g:fzf_mru_cache_dir, 1)
-    if isdirectory(cadir.s:lash(cadir).'.fzf_mru_cache')
-      let cadir = cadir.s:lash(cadir).'.fzf_mru_cache'
-    en
-  en
+  let cadir = cahome.s:lash(cahome).'fzf_mru'
   let s:cache_dir = cadir
 endf
 cal fzf_mru#utils#opts()
@@ -105,14 +98,6 @@ fu! fzf_mru#utils#fnesc(path, type, ...)
     en
   en
   retu a:0 ? escape(path, a:1) : path
-endf
-
-fu! fzf_mru#utils#getroot()
-  let root = execute('silent! projectroot#guess()')
-  if !root
-    let root = getcwd()
-  en
-  retu root
 endf
 "}}}
 
