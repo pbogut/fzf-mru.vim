@@ -37,3 +37,4 @@ function! s:fzf_mru(...) abort
 endfunction
 
 command! -nargs=* FZFMru call s:fzf_mru(<q-args>)
+command! -nargs=* FZFFreshMru call fzf_mru#mrufiles#refresh() <bar> call s:fzf_mru(<q-args>)
