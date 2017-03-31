@@ -142,7 +142,7 @@ endf
 fu! fzf_mru#mrufiles#init()
   if !has('autocmd') | retu | en
   let s:locked = 0
-  aug CtrlPMRUF
+  aug pb_fzf_mru
     au!
     au BufAdd,BufEnter,BufLeave,BufWritePost * cal s:record(expand('<abuf>', 1))
     au QuickFixCmdPre  *vimgrep* let s:locked = 1
