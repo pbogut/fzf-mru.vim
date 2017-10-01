@@ -32,6 +32,7 @@ Plugin 'pbogut/fzf-mru.vim'
 - You can run `:FZFMru`, `:FZFMru [search-query]` or `:FZFMru [fzf-command-options]`.
 - For example: `:FZFMru --prompt "Sup? " -q "notmuch"` or `:FZFMru readme`
 - You can also map it to a shortcut with `map <leader>p :FZFMru<cr>`.
+- Set `let g:fzf_mru_relative = 1` to only list files within current directory.
 
 ## Todo
 - [x] ~~Move CtrlP MRU functionality to the plugin itself~~
