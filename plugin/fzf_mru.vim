@@ -26,10 +26,18 @@ function! s:params(params)
   return params
 endfunction
 
+function! s:fzf_options() abort
+  let l:options = '--prompt "MRU>" '
+  if !empty(get(g:, 'fzf_mru_no_sort', 0))
+    let l:options .= '--no-sort '
+  endif
+  return l:options
+endfunction
+
 function! s:fzf_mru(...) abort
   let options = {
         \   'source': s:fzf_mru_source(),
-        \   'options': '--prompt "MRU> " ' . s:params(a:000),
+        \   'options': s:fzf_options() . s:params(a:000),
         \ }
   let extra = extend(copy(get(g:, 'fzf_layout', {'down': '~40%'})), options)
 

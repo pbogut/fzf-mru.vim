@@ -33,6 +33,7 @@ Plugin 'pbogut/fzf-mru.vim'
 - For example: `:FZFMru --prompt "Sup? " -q "notmuch"` or `:FZFMru readme`
 - You can also map it to a shortcut with `map <leader>p :FZFMru<cr>`.
 - Set `let g:fzf_mru_relative = 1` to only list files within current directory.
+- Set `let g:fzf_mru_no_sort = 1` to prevent `fzf` from sorting list while typing, it will keep list sorted by recency
 
 ## Todo
 - [x] ~~Move CtrlP MRU functionality to the plugin itself~~
