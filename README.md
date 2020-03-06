@@ -32,6 +32,7 @@ Plugin 'pbogut/fzf-mru.vim'
 - You can run `:FZFMru`, `:FZFMru [search-query]` or `:FZFMru [fzf-command-options]`.
 - For example: `:FZFMru --prompt "Sup? " -q "notmuch"` or `:FZFMru readme`
 - You can also map it to a shortcut with `map <leader>p :FZFMru<cr>`.
+- Or `fzf` with a preview: `nnoremap <silent> <leader>r :FZFMru --preview="bat --color always --style changes,header,grid {}" --preview-window="right:70%:noborder"<CR>`
 - Set `let g:fzf_mru_relative = 1` to only list files within current directory.
 - Set `let g:fzf_mru_no_sort = 1` to prevent `fzf` from sorting list while typing, it will keep list sorted by recency
 
