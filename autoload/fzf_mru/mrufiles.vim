@@ -88,6 +88,7 @@ endf
 " Public {{{1
 fu! fzf_mru#mrufiles#refresh(...)
   let mrufs = s:mergelists()
+  cal filter(s:mrufs, '!empty(fzf_mru#utils#glob(v:val, 1)) && !s:excl(v:val)')
   cal filter(mrufs, '!empty(fzf_mru#utils#glob(v:val, 1)) && !s:excl(v:val)')
   if exists('+ssl')
     cal map(mrufs, 'tr(v:val, "/", "\\")')
