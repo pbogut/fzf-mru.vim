@@ -140,6 +140,11 @@ fu! fzf_mru#mrufiles#cachefile()
   retu s:cafile
 endf
 
+function! fzf_mru#mrufiles#source()
+  " remove current file from the list
+  return filter(copy(fzf_mru#mrufiles#list()), 'v:val != expand("%")')
+endfunction
+
 fu! fzf_mru#mrufiles#init()
   if !has('autocmd') | retu | en
   let s:locked = 0
