@@ -15,7 +15,7 @@ fu! fzf_mru#mrufiles#opts()
         \ 'exclude': ['s:ex', ''],
         \ 'case_sensitive': ['s:cseno', 1],
         \ 'relative': ['s:re', 0],
-        \ 'store_relative': ['s:stre', 0],
+        \ 'store_relative_dir': ['s:stre', ''],
         \ 'save_on_update': ['s:soup', 1],
         \ }]
   for [ke, va] in items(opts)
@@ -68,7 +68,7 @@ fu! s:record(bufnr)
 endf
 
 fu! s:addtomrufs(fname)
-  if {s:stre}
+  if !empty({s:stre}) && getcwd() =~ {s:stre}
     let fn = fnamemodify(a:fname, ':.')
   else
     let fn = fnamemodify(a:fname, ':p')
