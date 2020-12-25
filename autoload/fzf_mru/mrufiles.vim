@@ -15,7 +15,7 @@ fu! fzf_mru#mrufiles#opts()
         \ 'exclude': ['s:ex', ''],
         \ 'case_sensitive': ['s:cseno', 1],
         \ 'relative': ['s:re', 0],
-        \ 'store_relative_dir': ['s:stre', ''],
+        \ 'store_relative_dirs': ['s:stre', []],
         \ 'save_on_update': ['s:soup', 1],
         \ }]
   for [ke, va] in items(opts)
@@ -68,11 +68,14 @@ fu! s:record(bufnr)
 endf
 
 fu! s:addtomrufs(fname)
-  if !empty({s:stre}) && getcwd() =~ {s:stre}
-    let fn = fnamemodify(a:fname, ':.')
-  else
-    let fn = fnamemodify(a:fname, ':p')
-  en
+  let fn = fnamemodify(a:fname, ':p')
+  for rdir in {s:stre}
+    if getcwd() =~ rdir
+      let fn = fnamemodify(a:fname, ':.')
+      break
+    endif
+  endfor
+  " if !empty({s:stre}) && getcwd() =~ {s:stre}
   let fn = exists('+ssl') ? tr(fn, '/', '\') : fn
   if ( !empty({s:in}) && fn !~# {s:in} ) || ( !empty({s:ex}) && fn =~# {s:ex} )
         \ || !empty(getbufvar('^'.fn.'$', '&bt')) || !filereadable(fn) | retu

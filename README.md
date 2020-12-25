@@ -33,10 +33,12 @@ Plugin 'pbogut/fzf-mru.vim'
 - For example: `:FZFMru --prompt "Sup? " -q "notmuch"` or `:FZFMru readme`
 - You can also map it to a shortcut with `map <leader>p :FZFMru<cr>`.
 - Set `let g:fzf_mru_relative = 1` to only list files within current directory.
-- Set `let g:fzf_mru_store_relative = 1` to store files as relative paths, as
-  opposed to as absolute ones.  This is useful if you have multiple copies of a
-  repository on your computer that you switch between, and want to keep your MRU
-  cache consistent between them.
+- Set `let g:fzf_mru_store_relative_dirs = ['/path/to/code']` to store files as
+  relative paths, as opposed to as absolute ones.  FZF-MRU will use the elements
+  in this list as patterns to match the path against to see if it qualifies.
+  This is useful if you have multiple copies of a repository on your computer
+  that you switch between, and want to keep your MRU cache consistent between
+  them.
 - Set `let g:fzf_mru_no_sort = 1` to prevent `fzf` from sorting list while typing, it will keep list sorted by recency
 
 ## Todo
