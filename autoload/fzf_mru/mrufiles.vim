@@ -75,7 +75,6 @@ fu! s:addtomrufs(fname)
       break
     endif
   endfor
-  " if !empty({s:stre}) && getcwd() =~ {s:stre}
   let fn = exists('+ssl') ? tr(fn, '/', '\') : fn
   if ( !empty({s:in}) && fn !~# {s:in} ) || ( !empty({s:ex}) && fn =~# {s:ex} )
         \ || !empty(getbufvar('^'.fn.'$', '&bt')) || !filereadable(fn) | retu
