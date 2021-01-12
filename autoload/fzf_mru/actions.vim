@@ -21,6 +21,15 @@ function! fzf_mru#actions#options() abort
   return options
 endfunction
 
+function! s:preview(...)
+  let preview_window = get(g:, 'fzf_preview_window', '')
+  if empty(preview_window)
+    return a:1
+  endif
+  let arguments = add(copy(a:000), preview_window)
+  return call('fzf#vim#with_preview', arguments)
+endfunction
+
 function! fzf_mru#actions#mru(...) abort
   let params = fzf_mru#actions#params(get(a:, 001, ''))
   let options = extend(
@@ -33,5 +42,5 @@ function! fzf_mru#actions#mru(...) abort
 
   let extra = extend(copy(get(g:, 'fzf_layout', {'down': '~40%'})), options)
 
-  call fzf#run(fzf#wrap('name', extra, 0))
+  call fzf#run(fzf#wrap('name', s:preview(extra)), 0)
 endfunction
