@@ -8,7 +8,9 @@ local l = {}
 
 local config = {
   exclude = {},
+  store_max = 10000,
 }
+
 for option, _ in pairs(config) do
   if g['fzf_mru_lua_' .. option] then
     config[option] = g['fzf_mru_lua_' .. option]
@@ -39,6 +41,12 @@ function M.add(buf_nr)
       return
     end
     sqlite.insert(l.file_record(full_name))
+  end
+end
+
+function M.truncate()
+  if config.store_max and config.store_max > 0 then
+    sqlite.truncate(config.store_max)
   end
 end
 
@@ -119,6 +127,7 @@ utils.augroup('fzf_mru_lua', {
     BufWritePost = {'*', [[call v:lua.fzf_mru.add(expand('<abuf>', 1) + 0)]]},
     QuickFixCmdPre = {'*', [[call v:lua.fzf_mru.lock()]]},
     QuickFixCmdPost  = {'*', [[call v:lua.fzf_mru.unlock()]]},
+    VimLeavePre = {'*', [[call v:lua.fzf_mru.truncate()]]},
 })
 
 l.sanitize_config()

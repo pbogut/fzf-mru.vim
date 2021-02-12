@@ -78,8 +78,20 @@ function M.get(filter)
   return l.decode(result)
 end
 
+function M.truncate(count)
+  local rowids = [[SELECT rowid FROM mru_files ORDER BY touched DESC
+    LIMIT -1 OFFSET ]] .. count;
+  local query = 'DELETE FROM mru_files where rowid in (' .. rowids .. ')'
+  return l.query(query)
+end
+
 l.relative_name = [[
     SUBSTR(name, IIF(LENGTH(cwd) AND name LIKE cwd || '%', LENGTH(cwd)+2, 1))]]
+
+function l.query(query)
+  local result = fn.system({'sqlite3', '--json', db_file}, query)
+  return l.decode(result)
+end
 
 function l.decode(set)
   if type(set) == 'string' and set ~= '' then
