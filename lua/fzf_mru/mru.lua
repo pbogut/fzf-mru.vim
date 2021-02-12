@@ -9,6 +9,7 @@ local l = {}
 local config = {
   exclude = {},
   store_max = 10000,
+  show_max = 500,
 }
 
 for option, _ in pairs(config) do
@@ -21,7 +22,6 @@ local file_path = fn.stdpath('data') .. '/fzf_mru/mru.db'
 local locked = false
 
 function M.display(filters)
-  filters = filters or {}
   local options = {
     source = l.file_list_source(filters),
     options = '--prompt "MRU> " ' .. (vim.g.fzf_preview or ''),
@@ -73,7 +73,11 @@ end
 
 function l.sanitize_config()
   if config.exclude and type(config.exclude) ~= 'table' then
-    print('[FZF  MRU]: ' .. 'exclude should be table, ' .. type(config.exclude) .. ' given.')
+    print('[FZF  MRU]: ' .. 'exclude should be a table, ' .. type(config.exclude) .. ' given.')
+    config.exclude = {}
+  end
+  if config.show_max and type(config.show_max) ~= 'number' then
+    print('[FZF  MRU]: ' .. 'show_max should be a number, ' .. type(config.exclude) .. ' given.')
     config.exclude = {}
   end
 end
@@ -90,8 +94,16 @@ function l.should_exclude(file_name)
   return false
 end
 
-function l.file_list_source(filters)
+function l.prepare_filters(filters)
   filters = filters or {}
+  if not filters.show_max and config.show_max then
+    filters.show_max = config.show_max
+  end
+  return filters
+end
+
+function l.file_list_source(filters)
+  filters = l.prepare_filters(filters)
   sqlite.database(file_path)
   local list = sqlite.get(filters)
 

@@ -72,10 +72,11 @@ function M.get(filter)
     query = query .. ' WHERE ' .. table.concat(where, ' AND ')
   end
 
-  query = query .. ' ORDER BY touched DESC;'
-
-  local result = fn.system({'sqlite3', '--json', db_file}, query)
-  return l.decode(result)
+  query = query .. ' ORDER BY touched DESC'
+  if filter.show_max and filter.show_max > 0 then
+    query = query .. ' LIMIT ' .. filter.show_max
+  end
+  return l.query(query)
 end
 
 function M.truncate(count)
