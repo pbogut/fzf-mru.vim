@@ -13,6 +13,9 @@ function M.database(file)
     db_file = file
   end
   if not created then
+    if not utils.file_exists(file) then
+      utils.make_parent_dir(file)
+    end
     M.create()
   end
 end

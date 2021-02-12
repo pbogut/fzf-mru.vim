@@ -31,6 +31,10 @@ function M.is_dir(dir_name)
   return fn.isdirectory(dir_name) > 0
 end
 
+function M.make_parent_dir(file)
+  fn.system('mkdir -p ' .. fn.fnamemodify(file, ':h'))
+end
+
 function M.map(tab, callback)
   local result = {}
   for index, element in ipairs(tab) do
