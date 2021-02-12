@@ -1,3 +1,4 @@
+local utils = require('fzf_mru.utils')
 local M = {}
 local l = {}
 
@@ -124,7 +125,7 @@ function l.get_where_from_filter(filter)
     filter.in_cwd = true
   end
 
-  where[#where+1] = l.get_filter(filter, 'branch', '')
+  where[#where+1] = l.get_filter(filter, 'branch', utils.get_git_branch())
   where[#where+1] = l.get_filter(filter, 'cwd', fn.getcwd())
   where[#where+1] = l.get_in_cwd_filter(filter)
 
