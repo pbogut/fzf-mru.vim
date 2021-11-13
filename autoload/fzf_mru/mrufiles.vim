@@ -148,8 +148,12 @@ fu! fzf_mru#mrufiles#cachefile()
 endf
 
 function! fzf_mru#mrufiles#source()
-  " remove current file from the list
-  return filter(copy(fzf_mru#mrufiles#list()), 'v:val != expand("%")')
+  let source = copy(fzf_mru#mrufiles#list())
+  if !empty(get(g:, 'fzf_mru_exclude_current_file', 1))
+    " remove current file from the list
+    let source = filter(source, 'v:val != expand("%")')
+  endif
+  return source
 endfunction
 
 fu! fzf_mru#mrufiles#init()
