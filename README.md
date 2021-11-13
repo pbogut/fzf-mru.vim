@@ -39,7 +39,8 @@ Plugin 'pbogut/fzf-mru.vim'
   This is useful if you have multiple copies of a repository on your computer
   that you switch between, and want to keep your MRU cache consistent between
   them.
-- Set `let g:fzf_mru_no_sort = 1` to prevent `fzf` from sorting list while typing, it will keep list sorted by recency
+- Set `let g:fzf_mru_no_sort = 1` to prevent `fzf` from sorting list while typing, it will keep list sorted by recency.
+- Set `let g:fzf_mru_exclude_current_file = 0` to include the current file in the list since it's excluded by default.
 
 ## Todo
 - [x] ~~Move CtrlP MRU functionality to the plugin itself~~
