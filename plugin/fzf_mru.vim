@@ -17,3 +17,7 @@ endif
 if exists(':FZFFreshMru') != 2
   command! -nargs=* FZFFreshMru call fzf_mru#mrufiles#refresh() <bar> call fzf_mru#actions#mru(<q-args>)
 endif
+if exists(':FZFMruWindows') != 2
+  command! FZFMruWindows call fzf_mru#actions#windows()
+endif
+
