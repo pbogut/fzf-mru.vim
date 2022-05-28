@@ -90,11 +90,14 @@ function! fzf_mru#actions#windows()
    endif
    let t = tabs[i]
    let w = index(buffers[t], filteredBufsIndex[i]) + 1
-   call add(lines,
-     \ printf('%s %s  %s',
-         \ printf('%3d', tabs[i]),
-         \ printf('%3d', w),
-         \ s:format_win(tabs[i], w, filteredBufsIndex[i])))
+   while w > 0
+    call add(lines,
+       \ printf('%s %s  %s',
+           \ printf('%3d', tabs[i]),
+           \ printf('%3d', w),
+           \ s:format_win(tabs[i], w, filteredBufsIndex[i])))
+    let w = index(buffers[t], filteredBufsIndex[i], w) + 1
+   endwhile
   endfor
   call fzf#run(fzf#wrap("Recent Windows", {
   \ 'source':  extend(['Tab Win    Name'], lines),
