@@ -42,6 +42,28 @@ Plugin 'pbogut/fzf-mru.vim'
 - Set `let g:fzf_mru_no_sort = 1` to prevent `fzf` from sorting list while typing, it will keep list sorted by recency.
 - Set `let g:fzf_mru_exclude_current_file = 0` to include the current file in the list since it's excluded by default.
 
+## FZF Options/Preview
+You could pass FZF options and/or enable the file preview like this:
+```vim
+command! -bang -nargs=? FZFMru call fzf_mru#actions#mru(<q-args>,
+    \{
+        \'window': {'width': 0.9, 'height': 0.8},
+        \'options': [
+            \'--preview', 'cat {}',
+            \'--preview-window', 'up:60%',
+            \'--bind', 'ctrl-_:toggle-preview'
+        \]
+    \}
+\)
+
+nnoremap <Leader>fm :FZFMru<CR>
+```
+
+If [bat](https://github.com/sharkdp/bat) is installed, which is the recommended previewer, you could replace the `cat` line in the command above:
+```vim
+            \'--preview', 'bat --style=numbers --color=always {}',
+```
+
 ## Todo
 - [x] ~~Move CtrlP MRU functionality to the plugin itself~~
 - [x] ~~Make `fzf.vim` optional dependency~~
