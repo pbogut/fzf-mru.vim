@@ -64,6 +64,21 @@ If [bat](https://github.com/sharkdp/bat) is installed, which is the recommended 
             \'--preview', 'bat --style=numbers --color=always {}',
 ```
 
+## Telescope integration
+Because why not?
+
+### Set up telescope extension
+
+Add following to your init file to load the extension:
+```
+require('telescope').load_extension('fzf_mru')
+```
+
+### Telescope usage:
+- `:Telescope fzf_mru` - Display MRU list as it would be display with `:FZFMru`
+- `:Telescope fzf_mru current_path`  - List MRU files that are within current path (ignores `g:fzf_mru_relative` option).
+- `:Telescope fzf_mru all` - List all MRU files (ignores `g:fzf_mru_relative` option).
+
 ## Todo
 - [x] ~~Move CtrlP MRU functionality to the plugin itself~~
 - [x] ~~Make `fzf.vim` optional dependency~~
