@@ -127,6 +127,10 @@ fu! fzf_mru#mrufiles#add(fn)
   en
 endf
 
+fu! fzf_mru#mrufiles#raw_list()
+  return s:mergelists()
+endf
+
 fu! fzf_mru#mrufiles#list(...)
   retu a:0 ? a:1 == 'raw' ? s:reformat(s:mergelists(), a:1) : 0
         \ : s:reformat(s:mergelists())
