@@ -154,7 +154,7 @@ endf
 
 function! fzf_mru#mrufiles#source()
   let source = copy(fzf_mru#mrufiles#list())
-  if !empty(s:excur)
+  if !empty({s:excur})
     " remove current file from the list
     let source = filter(source, 'v:val != expand("%")')
   endif
